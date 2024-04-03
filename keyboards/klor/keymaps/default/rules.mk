@@ -1,5 +1,7 @@
-SRC += features/layer_lock.c
-SRC += features/select_word.c
+#SRC += features/layer_lock.c
+#SRC += features/select_word.c
+#SRC += features/achordion.c
+
 
 WPM_ENABLE = no
 OLED_ENABLE = yes
