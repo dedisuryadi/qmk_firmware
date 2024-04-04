@@ -22,11 +22,9 @@
 //#include "features/layer_lock.h"
 //#include "features/select_word.h"
 
-#define LAYER_LOCK_IDLE_TIMEOUT 20000
-#define SELECT_WORD_TIMEOUT 10000  // When idle, clear state after 10 seconds.
-#define TAPPING_TERM_PER_KEY
-
-
+//#define LAYER_LOCK_IDLE_TIMEOUT 20000
+//#define SELECT_WORD_TIMEOUT 10000  // When idle, clear state after 10 seconds.
+//#define TAPPING_TERM_PER_KEY
 
 
 #ifdef AUDIO_ENABLE
@@ -34,13 +32,13 @@
 #endif //AUDIO ENABLE
 
 
-//uint16_t keycode_config(uint16_t keycode) {
-//    return keycode;
-//}
+uint16_t keycode_config(uint16_t keycode) {
+    return keycode;
+}
 
-//uint8_t mod_config(uint8_t mod) {
-//    return mod;
-//}
+uint8_t mod_config(uint8_t mod) {
+    return mod;
+}
 
 
 #ifdef TAP_DANCE_ENABLE
@@ -85,19 +83,19 @@ tap_dance_action_t tap_dance_actions[] = {
 #define CTL_O MT(MOD_LCTL, KC_O)
 
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case MOD_RSFT:
-        case MOD_LSFT:
-        case SFT_F:
-        case SFT_TT:
-        case SFT_J:
-        case SFT_N:
-            return TAPPING_TERM - 50;
-        default:
-            return TAPPING_TERM;
-    }
-}
+//uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+//    switch (keycode) {
+//        case MOD_RSFT:
+//        case MOD_LSFT:
+//        case SFT_F:
+//        case SFT_TT:
+//        case SFT_J:
+//        case SFT_N:
+//            return TAPPING_TERM - 50;
+//        default:
+//            return TAPPING_TERM;
+//    }
+//}
 
 
 // ┌─────────────────────────────────────────────────┐
@@ -208,30 +206,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // COLEMAK LAYER, USING WARPD
 [_COLEMAK] = LAYOUT(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-              KC_QH,    KC_WH,     KC_K,     KC_P,     KC_B,                              KC_J,     KC_L,      KC_U,     KC_Y,   KC_QUOT,
-     KC_ESC,  CTL_A,    ALT_R,    GUI_S,    SFT_TT,    HYP_G,                             HYP_M,    SFT_N,     GUI_E,    ALT_I,     CTL_O,  KC_SCLN,
-    KC_LLBH,  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,   KC_MPLY,     KC_F,     KC_H,   KC_COMM,   KC_DOT,   KC_SLSH,  KC_RLBH,
-                                KC_BTN1,      SPC,       TAB,     QK_REP,     QK_AREP,      BSP,      ENT,       DEL,
-                                KC_WH_U,  KC_WH_D,                                               KC_WH_L,  KC_WH_R
+                KC_QH,    KC_WH,     KC_K,     KC_P,     KC_B,                              KC_J,     KC_L,      KC_U,     KC_Y,   KC_QUOT,
+     KC_ESC,    CTL_A,    ALT_R,    GUI_S,    SFT_TT,    HYP_G,                             HYP_M,    SFT_N,     GUI_E,    ALT_I,     CTL_O,  KC_SCLN,
+OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,   KC_MPLY,     KC_F,     KC_H,   KC_COMM,   KC_DOT,   KC_SLSH,  OSM(MOD_LSFT),
+                                  KC_BTN1,      SPC,       TAB,     QK_REP,     QK_AREP,      BSP,      ENT,       DEL,
+                                  KC_WH_U,  KC_WH_D,                                       KC_WH_L,  KC_WH_R
  ),
 
 // NAVIGATION LAYER
 [_NAV] = LAYOUT(
 //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),   QK_REP,
+                    ___,      ___,      ___,      ___,     ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),   QK_REP,
        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,  KC_RIGHT,  QK_AREP,  KC_TRNS,
-      TG(_NAV), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_MUTE,   KC_MPLY,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,    SELWORD,  TG(_NAV),
-                                    KC_TRNS,  KC_TRNS,  KC_TRNS,       LLOCK,     LLOCK,   KC_TRNS,  KC_TRNS,   KC_TRNS,
+      TG(_NAV), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NUM), KC_TRNS,     KC_MUTE,   KC_MPLY,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,    ___,  TG(_NAV),
+                                    KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,   KC_TRNS,  KC_TRNS,   KC_TRNS,
                                    KC_WH_L,  KC_WH_R,                                         KC_TRNS,   KC_TRNS
 ),
 
 // NUMBER AND SYMBOL LAYER
 [_NUM] = LAYOUT(
    //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-               KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
+                   ___,      ___,      ___,      ___,     ___,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           KC_MINUS,    KC_4,     KC_5,   KC_6,  KC_LBRC,  KC_RBRC,
-     TG(_NUM), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
-                                   KC_TRNS,  KC_TRNS, KC_TRNS,       LLOCK,     LLOCK,    KC_TRNS, KC_TRNS,  KC_TRNS,
+     TG(_NUM),     ___,      ___,      ___,      ___,     ___,     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
+                                   KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
                                    KC_WH_U,  KC_WH_D,                                              KC_WH_L,  KC_WH_R
 
 ),
@@ -242,8 +240,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
   KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_TRNS,                                    KC_F12,   KC_F7,   KC_F8,   KC_F9,  ___,
         KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                             KC_F11,   KC_F4,   KC_F5,   KC_F6,  ___,  KC_TRNS,
-        TG(_FN), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_MUTE,   KC_MPLY,     KC_F10,   KC_F1,   KC_F2,   KC_F3,  ___,  TG(_FN),
-                                     KC_BTN1,  KC_BTN2, KC_BTN3,       LLOCK,     LLOCK,    KC_TRNS, KC_TRNS,  KC_TRNS,
+        TG(_FN),     ___,      ___,      ___,      ___,     ___,     KC_MUTE,   KC_MPLY,     KC_F10,   KC_F1,   KC_F2,   KC_F3,  ___,  TG(_FN),
+                                     KC_BTN1,  KC_BTN2, KC_BTN3,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
                                      KC_BRID,  KC_BRIU,                                              KC_VOLD,  KC_VOLU
 
 ),
@@ -251,10 +249,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // BUTTON LAYER
 [_BTN] = LAYOUT(
      //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                 KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,                            OS_SWAP, KC_MPRV,  KC_MPLY, KC_MNXT,  CMD_SHIFT_3,
-        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                            KC_CAPS, KC_MCTL,  RGB_VAD, RGB_VAI,  ___,             KC_VOLU,
-       TG(_BTN), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_MUTE,   KC_MPLY,    RGB_TOG, KC_BRIU,  KC_BRID, KC_LPAD, RGB_MODE_FORWARD, KC_VOLD,
-                                     KC_TRNS,  KC_TRNS, KC_TRNS,       LLOCK,     LLOCK,    KC_TRNS, KC_TRNS,  KC_TRNS,
+                     ___,      ___,      ___,      ___,     ___,                            OS_SWAP, KC_MPRV,  KC_MPLY, KC_MNXT,  CMD_SHIFT_3,
+        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                            KC_CAPS, KC_MCTL,  RGB_VAD, RGB_VAI,  RGB_SAI,         KC_VOLU,
+       TG(_BTN),     ___,      ___,      ___,  RGB_HUI, RGB_HUD,     KC_MUTE,   KC_MPLY,    RGB_TOG, KC_BRID,  KC_BRIU, KC_LPAD, RGB_MODE_FORWARD, KC_VOLD,
+                                     KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
                                      KC_VOLD,  KC_VOLU,                                              KC_BRID,  KC_BRIU
 
 ),
@@ -264,8 +262,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
         KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_TRNS,                           S(KC_EQUAL),    S(KC_7),     S(KC_8),   S(KC_9),  S(KC_0),
         KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           S(KC_MINUS),    S(KC_4),     S(KC_5),   S(KC_6),  S(KC_LBRC),  S(KC_RBRC),
-       TG(_SYM), KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS,     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    TG(_SYM),
-                                     KC_TRNS,  KC_TRNS, KC_TRNS,       LLOCK,     LLOCK,    KC_TRNS, KC_TRNS,  KC_TRNS,
+       TG(_SYM), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NAV), KC_TRNS,     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    TG(_SYM),
+                                     KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
                                      KC_WH_U,     KC_WH_D,                                           KC_WH_L,  KC_WH_R
 ),
 
@@ -290,13 +288,16 @@ float SYM_SONG[][2] = SONG(MAJOR_SOUND); // _SYM
 float BTN_SONG[][2] = SONG(MINOR_SOUND); // _BTN
 #endif
 
+
+#ifdef LEADER_ENABLE
+
+bool did_leader_succeed = false;
+
 #ifdef OLED_ENABLE
 const char PROGMEM rec_ico[] = {0xD1, 0xE1, 0};
 const char PROGMEM stop_ico[] = {0xD3, 0xE1, 0};
 const char PROGMEM play_ico[] = {0xD2, 0xE1, 0};
 #endif
-
-bool did_leader_succeed = false;
 
 void leader_start_user(void) {
     did_leader_succeed = false;
@@ -394,6 +395,7 @@ void leader_end_user(void) {
     }
 #endif
 }
+#endif
 
 
 // ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -421,20 +423,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case OS_SWAP:
             if (record->event.pressed) {
                 if (!keymap_config.swap_lctl_lgui) {
-                    keymap_config.swap_lctl_lgui = false;  // ─── MAC
-#ifdef AUDIO_ENABLE
+                    keymap_config.swap_lctl_lgui = true;  // ─── MAC
+                    #ifdef AUDIO_ENABLE
                     PLAY_SONG(mac_song);
-#endif // AUDIO_ENABLE
+                    #endif // AUDIO_ENABLE
                 }
                 else {
-                    keymap_config.swap_lctl_lgui = true; // ─── WIN
-#ifdef AUDIO_ENABLE
+                    keymap_config.swap_lctl_lgui = false; // ─── WIN
+                    #ifdef AUDIO_ENABLE
                     PLAY_SONG(winxp_song);
-#endif // AUDIO_ENABLE
+                    #endif // AUDIO_ENABLE
                 }
-#ifdef HAPTIC_ENABLE
+                #ifdef HAPTIC_ENABLE
                 DRV_pulse(pulsing_strong);
-#endif // HAPTIC_ENABLE
+                #endif // HAPTIC_ENABLE
                 eeconfig_update_keymap(keymap_config.raw);
                 clear_keyboard();  // ──── clear to prevent stuck keys
                 return false;
@@ -749,7 +751,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       switch (get_highest_layer(state)) {
             case _QWERTY:
 //                tap_code16(KC_F13);
-                strcpy ( layer_state_str, "0._QWERTY");
+                strcpy ( layer_state_str, "0._BASE");
                 break;
             case _COLEMAK:
 //                tap_code16(S(KC_F13));
