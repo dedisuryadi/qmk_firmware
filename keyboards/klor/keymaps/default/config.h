@@ -8,7 +8,7 @@ for more options.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 
-#define TAPPING_TERM 200
+#define TAPPING_TERM 180
 
 
 // leader key
@@ -24,6 +24,18 @@ for more options.
 //#define NO_AUTO_SHIFT_ALPHA
 //#define AUTO_SHIFT_TIMEOUT TAPPING_TERM
 //#define AUTO_SHIFT_NO_SETUP
+
+// Mouse key speed and acceleration.
+#undef MOUSEKEY_DELAY
+#define MOUSEKEY_DELAY          0
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL       16
+#undef MOUSEKEY_WHEEL_DELAY
+#define MOUSEKEY_WHEEL_DELAY    0
+#undef MOUSEKEY_MAX_SPEED
+#define MOUSEKEY_MAX_SPEED      6
+#undef MOUSEKEY_TIME_TO_MAX
+#define MOUSEKEY_TIME_TO_MAX    64
 
 #ifndef NO_DEBUG
 #define NO_DEBUG
@@ -113,7 +125,7 @@ for more options.
 //#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
 //#    define ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
 //#    define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT
-#    define ENABLE_RGB_MATRIX_BREATHING
+//#    define ENABLE_RGB_MATRIX_BREATHING
 //#    define ENABLE_RGB_MATRIX_BAND_SAT
 //#    define ENABLE_RGB_MATRIX_BAND_VAL
 //#    define ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT

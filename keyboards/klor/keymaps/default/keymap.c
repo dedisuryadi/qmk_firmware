@@ -216,9 +216,9 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,  
 // NAVIGATION LAYER
 [_NAV] = LAYOUT(
 //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                    ___,      ___,      ___,      ___,     ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),   QK_REP,
-       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,  KC_RIGHT,  QK_AREP,  KC_TRNS,
-      TG(_NAV), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NUM), KC_TRNS,     KC_MUTE,   KC_MPLY,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,    ___,  TG(_NAV),
+                    ___,      ___,      ___,      ___,      ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),   QK_REP,
+       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,  KC_RIGHT,  QK_AREP,  KC_TRNS,
+      TG(_NAV), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NUM), TG(_BTN),     KC_MUTE,   KC_MPLY,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,    ___,  TG(_NAV),
                                     KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,   KC_TRNS,  KC_TRNS,   KC_TRNS,
                                    KC_WH_L,  KC_WH_R,                                         KC_TRNS,   KC_TRNS
 ),
@@ -226,10 +226,10 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,  
 // NUMBER AND SYMBOL LAYER
 [_NUM] = LAYOUT(
    //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                   ___,      ___,      ___,      ___,     ___,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
-      KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           KC_MINUS,    KC_4,     KC_5,   KC_6,  KC_LBRC,  KC_RBRC,
-     TG(_NUM),     ___,      ___,      ___,      ___,     ___,     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
-                                   KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
+                   ___,      ___,      ___,      ___,      ___,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
+      KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_MINUS,    KC_4,     KC_5,   KC_6,  KC_LBRC,  KC_RBRC,
+     TG(_NUM),     ___,      ___,      ___,      ___, TG(_BTN),     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
+                                   KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
                                    KC_WH_U,  KC_WH_D,                                              KC_WH_L,  KC_WH_R
 
 ),
@@ -238,7 +238,7 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,  
 // FUNCTION LAYER
 [_FN] = LAYOUT(
      //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-  KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_TRNS,                                    KC_F12,   KC_F7,   KC_F8,   KC_F9,  ___,
+                     ___,      ___,      ___,      ___,     ___,                             KC_F12,   KC_F7,   KC_F8,   KC_F9,  ___,
         KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                             KC_F11,   KC_F4,   KC_F5,   KC_F6,  ___,  KC_TRNS,
         TG(_FN),     ___,      ___,      ___,      ___,     ___,     KC_MUTE,   KC_MPLY,     KC_F10,   KC_F1,   KC_F2,   KC_F3,  ___,  TG(_FN),
                                      KC_BTN1,  KC_BTN2, KC_BTN3,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
@@ -248,23 +248,22 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,  
 
 // BUTTON LAYER
 [_BTN] = LAYOUT(
-     //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                     ___,      ___,      ___,      ___,     ___,                            OS_SWAP, KC_MPRV,  KC_MPLY, KC_MNXT,  CMD_SHIFT_3,
-        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                            KC_CAPS, KC_MCTL,  RGB_VAD, RGB_VAI,  RGB_SAI,         KC_VOLU,
-       TG(_BTN),     ___,      ___,      ___,  RGB_HUI, RGB_HUD,     KC_MUTE,   KC_MPLY,    RGB_TOG, KC_BRID,  KC_BRIU, KC_LPAD, RGB_MODE_FORWARD, KC_VOLD,
-                                     KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
-                                     KC_VOLD,  KC_VOLU,                                              KC_BRID,  KC_BRIU
+                      CMD_SHIFT_3, KC_MNXT,  KC_MPLY,  KC_MPRV,  OS_SWAP,                               ___,       KC_ACL0,       KC_ACL1,     KC_ACL2,  KC_MS_BTN4,
+        RGB_TOG,          RGB_SAI, RGB_VAI,  RGB_VAD,  KC_MCTL,  KC_CAPS,                        KC_MS_LEFT,    KC_MS_DOWN,    KC_MS_UP,    KC_MS_RIGHT, KC_MS_BTN5, TG(_BTN),
+       TG(_BTN), RGB_MODE_FORWARD, KC_LPAD,  KC_BRIU,  KC_BRID, TG(_BTN), KC_MUTE,   KC_MPLY, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, KC_MS_BTN6, TG(_BTN),
+                                             KC_BTN1,  KC_BTN2,  KC_BTN3,  QK_REP,   QK_AREP,       KC_TRNS,       KC_TRNS,        KC_TRNS,
+                                             KC_VOLD,  KC_VOLU,                                                   KC_BRID,        KC_BRIU
 
 ),
 
 // SYMBOL LAYER
 [_SYM] = LAYOUT(
         //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-        KC_MS_LEFT, KC_MS_DOWN, KC_MS_UP, KC_MS_RIGHT, KC_TRNS,                           S(KC_EQUAL),    S(KC_7),     S(KC_8),   S(KC_9),  S(KC_0),
-        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                           S(KC_MINUS),    S(KC_4),     S(KC_5),   S(KC_6),  S(KC_LBRC),  S(KC_RBRC),
-       TG(_SYM), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NAV), KC_TRNS,     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    TG(_SYM),
-                                     KC_TRNS,  KC_TRNS, KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
-                                     KC_WH_U,     KC_WH_D,                                           KC_WH_L,  KC_WH_R
+                     ___,      ___,      ___,      ___,      ___,                           S(KC_EQUAL),    S(KC_7),     S(KC_8),   S(KC_9),  S(KC_0),
+        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           S(KC_MINUS),    S(KC_4),     S(KC_5),   S(KC_6),  S(KC_LBRC),  S(KC_RBRC),
+       TG(_SYM),     ___,      ___,  TG(_FN), TG(_NAV), TG(_BTN),     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    TG(_SYM),
+                                     KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
+                                     KC_WH_U,  KC_WH_D,                                           KC_WH_L,  KC_WH_R
 ),
 
 };
