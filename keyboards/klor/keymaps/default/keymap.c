@@ -24,7 +24,7 @@
 
 //#define LAYER_LOCK_IDLE_TIMEOUT 20000
 //#define SELECT_WORD_TIMEOUT 10000  // When idle, clear state after 10 seconds.
-//#define TAPPING_TERM_PER_KEY
+#define TAPPING_TERM_PER_KEY
 
 
 #ifdef AUDIO_ENABLE
@@ -58,23 +58,24 @@ tap_dance_action_t tap_dance_actions[] = {
 // LEFT HAND HOME ROW MODS ├───────────────────────────────────┐
 
 #define CTL_A MT(MOD_LCTL, KC_A)
-#define ALT_S MT(MOD_LALT, KC_S)
-#define GUI_D MT(MOD_LGUI, KC_D)
-#define SFT_F MT(MOD_LSFT, KC_F)
-#define HYP_G MT(MOD_HYPR, KC_G)
+//#define ALT_S MT(MOD_LALT, KC_S)
+//#define GUI_D MT(MOD_LGUI, KC_D)
+//#define SFT_F MT(MOD_LSFT, KC_F)
+//#define HYP_G MT(MOD_HYPR, KC_G)
 
 #define ALT_R MT(MOD_LALT, KC_R)
 #define GUI_S MT(MOD_LGUI, KC_S)
 #define SFT_TT MT(MOD_LSFT, KC_T)
 #define HYP_G MT(MOD_HYPR, KC_G)
 
+
 // RIGHT HAND HOME ROW MODS ├───────────────────────────────────┐
 
-#define HYP_H MT(MOD_HYPR, KC_H)
-#define SFT_J MT(MOD_RSFT, KC_J)
-#define GUI_K MT(MOD_LGUI, KC_K)
-#define ALT_L MT(MOD_LALT, KC_L)
-#define CTL_SCLN MT(MOD_LCTL, KC_SCLN)
+//#define HYP_H MT(MOD_HYPR, KC_H)
+//#define SFT_J MT(MOD_RSFT, KC_J)
+//#define GUI_K MT(MOD_LGUI, KC_K)
+//#define ALT_L MT(MOD_LALT, KC_L)
+//#define CTL_SCLN MT(MOD_LCTL, KC_SCLN)
 
 #define HYP_M MT(MOD_HYPR, KC_M)
 #define SFT_N MT(MOD_RSFT, KC_N)
@@ -82,35 +83,15 @@ tap_dance_action_t tap_dance_actions[] = {
 #define ALT_I MT(MOD_LALT, KC_I)
 #define CTL_O MT(MOD_LCTL, KC_O)
 
-
-//uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//    switch (keycode) {
-//        case MOD_RSFT:
-//        case MOD_LSFT:
-//        case SFT_F:
-//        case SFT_TT:
-//        case SFT_J:
-//        case SFT_N:
-//            return TAPPING_TERM - 50;
-//        default:
-//            return TAPPING_TERM;
-//    }
-//}
-
-
 // ┌─────────────────────────────────────────────────┐
 // │ d e f i n e   k e y c o d e s                   │
 // └─────────────────────────────────────────────────┘
 
 enum custom_keycodes {
     OS_SWAP = SAFE_RANGE,
-    TO_QWERTY,
-    TO_COLEMAK,
-    LLOCK,
     CMD_SHIFT_3,
-    SELWORD,
-    LLAY_BTN,
-    RLAY_BTN,
+    COLON_EQ,
+    UPDIR,
 };
 
 // ┌─────────────────────────────────────────────────┐
@@ -118,13 +99,13 @@ enum custom_keycodes {
 // └─────────────────────────────────────────────────┘
 
 enum klor_layers {
-    _QWERTY,
+//    _QWERTY,
     _COLEMAK,
-    _NAV,
-    _NUM,
-    _FN,
-    _BTN,
     _SYM,
+    _NAV,
+    _FN,
+    _NUM,
+    _BTN,
 };
 
 // LAYER SWITCH MODS
@@ -133,23 +114,164 @@ enum klor_layers {
 #define TAB LT(_NAV , KC_TAB)
 #define BSP LT(_FN, KC_BSPC)
 #define DEL LT(_BTN, KC_DEL)
-#define OSS LT(_BTN, OSM(MOD_LSFT))
+//#define OSS LT(_BTN, OSM(MOD_LSFT))
 #define ENT LT(_NUM, KC_ENT)
 #define SPC LT(_SYM, KC_SPC)
 
 // HOLD MOD
 #define KC_QH LT(0, KC_Q)
 #define KC_WH LT(0, KC_W)
-#define KC_ESCH LT(0, KC_ESC)
 #define KC_ZH LT(0, KC_Z)
 #define KC_XH LT(0, KC_X)
 #define KC_CH LT(0, KC_C)
 #define KC_VH LT(0, KC_V)
-#define KC_OH LT(0, KC_O)
-#define KC_PH LT(0, KC_P)
-#define KC_LLBH LT(0, LLAY_BTN)
-#define KC_RLBH LT(0, RLAY_BTN)
+//#define KC_ESCH LT(0, KC_ESC)
+//#define KC_OH LT(0, KC_O)
+//#define KC_PH LT(0, KC_P)
+//#define KC_LLBH LT(0, LLAY_BTN)
+//#define KC_RLBH LT(0, RLAY_BTN)
 
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+//        case MOD_RSFT:
+//        case MOD_LSFT:
+//        case SFT_F:
+//        case SFT_TT:
+//        case SFT_J:
+//        case SFT_N:
+//            return TAPPING_TERM - 50;
+        case KC_WH:
+            return TAPPING_TERM + 300;
+        case KC_QH:
+            return TAPPING_TERM + 350;
+        case KC_ZH:
+        case KC_XH:
+        case KC_CH:
+        case KC_VH:
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+
+// COMBOS
+enum combos {
+    CB_OSM,
+    CB_ALTBSPC,
+    CB_SLEEP,
+    CB_WP,
+    CB_MSCD,
+    CB_MSCU,
+    CB_GUI_TAB,
+    CB_CTL_TAB,
+    CB_GUI_TAB_TAB,
+    CB_LBRC,
+    CB_RBRC,
+    CB_COLON_EQ,
+    CB_ESC,
+    CB_BTN_LAYER,
+    CB_TMUX_CMD,
+};
+const uint16_t PROGMEM cb_osm[] = {SPC, ENT, COMBO_END};
+const uint16_t PROGMEM cb_altbspc[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM cb_sleep[] = {TAB, DEL, COMBO_END};
+const uint16_t PROGMEM cb_wp[] = {KC_WH, KC_P, COMBO_END};
+const uint16_t PROGMEM cb_mscd[] = {KC_CH, KC_D, COMBO_END};
+const uint16_t PROGMEM cb_mscu[] = {KC_XH, KC_CH, COMBO_END};
+const uint16_t PROGMEM cb_gui_tab[] = {KC_K, KC_P, COMBO_END};
+const uint16_t PROGMEM cb_ctl_tab[] = {KC_QH, KC_P, COMBO_END};
+const uint16_t PROGMEM cb_gui_tab_tab[] = {KC_K, KC_B, COMBO_END};
+const uint16_t PROGMEM cb_lbrc[] = {KC_H, KC_COMM, COMBO_END};
+const uint16_t PROGMEM cb_rbrc[] = {KC_COMM, KC_DOT, COMBO_END};
+const uint16_t PROGMEM cb_colon_eq[] = {KC_B, KC_J, COMBO_END};
+const uint16_t PROGMEM cb_esc[] = {KC_QH, KC_WH, COMBO_END};
+const uint16_t PROGMEM cb_btn_layer[] = {SFT_N, GUI_E, ALT_I, COMBO_END};
+const uint16_t PROGMEM cb_tmux_cmd[] = {KC_L, KC_U, KC_Y, COMBO_END};
+combo_t key_combos[] = {
+        [CB_WP] = COMBO(cb_wp, G(KC_GRV)),
+        [CB_ESC] = COMBO(cb_esc, KC_ESC),
+        [CB_TMUX_CMD] = COMBO_ACTION(cb_tmux_cmd),
+        [CB_BTN_LAYER] = COMBO(cb_btn_layer, TG(_BTN)),
+        [CB_COLON_EQ] = COMBO_ACTION(cb_colon_eq),
+        [CB_MSCD] = COMBO(cb_mscd, KC_MS_WH_DOWN),
+        [CB_MSCU] = COMBO(cb_mscu, KC_MS_WH_UP),
+        [CB_GUI_TAB] = COMBO_ACTION(cb_gui_tab),
+        [CB_CTL_TAB] = COMBO_ACTION(cb_ctl_tab),
+        [CB_GUI_TAB_TAB] = COMBO_ACTION(cb_gui_tab_tab),
+        [CB_LBRC] = COMBO(cb_lbrc, KC_LBRC),
+        [CB_RBRC] = COMBO(cb_rbrc, KC_RBRC),
+        [CB_OSM] = COMBO(cb_osm, OSM(MOD_LSFT)),
+        [CB_ALTBSPC] = COMBO(cb_altbspc, A(KC_BSPC)),
+        [CB_SLEEP] = COMBO_ACTION(cb_sleep),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+        case CB_COLON_EQ:
+            if (pressed) {
+                SEND_STRING(" := ");
+            }
+            break;
+
+        case CB_GUI_TAB_TAB:
+            if (pressed) {
+                register_code(KC_LGUI);
+                wait_ms(250);
+                tap_code(KC_TAB);
+                wait_ms(250);
+                tap_code(KC_TAB);
+                wait_ms(100);
+                unregister_code(KC_LGUI);
+            }
+            break;
+
+        case CB_GUI_TAB:
+            if (pressed) {
+                register_code(KC_LGUI);
+                wait_ms(250);
+                tap_code(KC_TAB);
+                wait_ms(100);
+                unregister_code(KC_LGUI);
+            }
+            break;
+
+        case CB_CTL_TAB:
+            if (pressed) {
+                register_code16(C(KC_TAB));
+                wait_ms(300);
+                unregister_code16(C(KC_TAB));
+            }
+            break;
+
+        case CB_TMUX_CMD:
+            if (pressed) {
+                tap_code16(LCTL(KC_B));
+                tap_code16(LSFT(KC_SCLN));
+            }
+            break;
+
+        case CB_SLEEP:
+            if (pressed) {
+                // Macro actions
+                tap_code(KC_ESC);
+                wait_ms(100);
+                tap_code16(LCTL(LALT(LSFT(LGUI(KC_SCLN)))));
+                wait_ms(100);
+                tap_code16(LGUI(KC_SPC));
+                wait_ms(500);
+                tap_code(KC_S);
+                tap_code(KC_L);
+                tap_code(KC_E);
+                tap_code(KC_E);
+                tap_code(KC_P);
+                wait_ms(800);
+                tap_code(KC_ENT);
+            }
+            break;
+    }
+}
 
 bool is_ctl_tab_active = false;
 bool is_alt_tab_active = false; // ADD this near the begining of keymap.c
@@ -160,12 +282,12 @@ void matrix_scan_user(void) {
 //    layer_lock_task();
 //    achordion_task();
     if (is_alt_tab_active) {
-        if (timer_elapsed(alt_tab_timer) > 800) {
+        if (timer_elapsed(alt_tab_timer) > 900) {
             unregister_code(KC_LGUI);
             is_alt_tab_active = false;
         }
     } else if (is_ctl_tab_active) {
-        if (timer_elapsed(alt_tab_timer) > 800) {
+        if (timer_elapsed(alt_tab_timer) > 900) {
             unregister_code(KC_LCTL);
             is_ctl_tab_active = false;
         }
@@ -185,51 +307,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    │ q w e r t y                                               │
    └───────────────────────────────────────────────────────────┘
              ┌─────────┬─────────┬─────────┬─────────┬─────────┐                    ┌─────────┬─────────┬─────────┬─────────┬─────────┐
-             │    Q    │    W    │    E    │    R    │    T    │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │    Y    │    U    │    I    │    O    │    P    │   
+             │    Q    │    W    │    E    │    R    │    T    │ ╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮╭╮ │    Y    │    U    │    I    │    O    │    P    │
    ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤ │╰╯╰╯╰╯╰╯╰╯╰╯╰╯╰╯│ ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐
    │   TAB   │    A    │    S    │    D    │    F    │    G    ├─╯                ╰─┤    H    │    J    │    K    │    L    │    ;    │    "    │
    ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤╭────────╮╭────────╮├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
    │   DEL   │    Z    │    X    │    C    │    V    │    B    ││  MUTE  ││PLY/PSE ││    N    │    M    │    ,    │    .    │    /    │  SHIFT  │
    └─────────┴─────────┴─────────┼─────────┼─H────────┼─────────┼╰────────╯╰────────╯┼─────────┼─────────┼─────────┼─────────┴─────────┴─────────┘
-                                 │  CTRL   │  _____  │  SPACE  │   ALT   ││ CMD/WIN │  ENTER  │  _____  │ BSPACE  │  
+                                 │  CTRL   │  _____  │  SPACE  │   ALT   ││ CMD/WIN │  ENTER  │  _____  │ BSPACE  │
                                  └─────────┴─────────┴─────────┴─────────┘└─────────┴─────────┴─────────┴─────────┘ */
 // BASE LAYER
-[_QWERTY] = LAYOUT(
- //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-              KC_QH,   KC_WH,     KC_E,        KC_R,     KC_T,                              KC_Y,     KC_U,     KC_I,     KC_OH,       KC_PH,
-     KC_ESC,  CTL_A,   ALT_S,    GUI_D,       SFT_F,    HYP_G,                             HYP_H,    SFT_J,    GUI_K,     ALT_L,    CTL_SCLN,   KC_QUOT,
-     KC_LLBH, KC_ZH,   KC_XH,    KC_CH,       KC_VH,     KC_B,  TO_COLEMAK,   KC_MPLY,      KC_N,     KC_M,  KC_COMM,    KC_DOT,     KC_SLSH,   KC_RLBH,
-                               KC_BTN1,         SPC,      TAB,     QK_REP,     QK_AREP,       BSP,      ENT,      DEL,
-                               KC_WH_U,     KC_WH_D,                                               KC_WH_L,  KC_WH_R
- ),
+//[_QWERTY] = LAYOUT(
+// //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
+//              KC_QH,   KC_WH,     KC_E,        KC_R,     KC_T,                              KC_Y,     KC_U,     KC_I,     KC_OH,       KC_PH,
+//     KC_ESC,  CTL_A,   ALT_S,    GUI_D,       SFT_F,    HYP_G,                             HYP_H,    SFT_J,    GUI_K,     ALT_L,    CTL_SCLN,   KC_QUOT,
+//     KC_LLBH, KC_ZH,   KC_XH,    KC_CH,       KC_VH,     KC_B,  TO_COLEMAK,   KC_MPLY,      KC_N,     KC_M,  KC_COMM,    KC_DOT,     KC_SLSH,   KC_RLBH,
+//                               KC_BTN1,         SPC,      TAB,     QK_REP,     QK_AREP,       BSP,      ENT,      DEL,
+//                               KC_WH_U,     KC_WH_D,                                               KC_WH_L,  KC_WH_R
+// ),
 
 // COLEMAK LAYER, USING WARPD
 [_COLEMAK] = LAYOUT(
  //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                 KC_QH,    KC_WH,     KC_K,     KC_P,     KC_B,                              KC_J,     KC_L,      KC_U,     KC_Y,   KC_QUOT,
      KC_ESC,    CTL_A,    ALT_R,    GUI_S,    SFT_TT,    HYP_G,                             HYP_M,    SFT_N,     GUI_E,    ALT_I,     CTL_O,  KC_SCLN,
-OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,   KC_MPLY,     KC_F,     KC_H,   KC_COMM,   KC_DOT,   KC_SLSH,  OSM(MOD_LSFT),
-                                  KC_BTN1,      SPC,       TAB,     QK_REP,     QK_AREP,      BSP,      ENT,       DEL,
+OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     KC_MUTE,   KC_MPLY,     KC_F,     KC_H,   KC_COMM,   KC_DOT,   KC_SLSH,  OSM(MOD_LSFT),
+                                  KC_BTN1,      SPC,       TAB,     QK_AREP,    QK_REP,      BSP,      ENT,       DEL,
                                   KC_WH_U,  KC_WH_D,                                       KC_WH_L,  KC_WH_R
  ),
 
 // NAVIGATION LAYER
 [_NAV] = LAYOUT(
 //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                    ___,      ___,      ___,      ___,      ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),   QK_REP,
-       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,  KC_RIGHT,  QK_AREP,  KC_TRNS,
-      TG(_NAV), KC_TRNS,  KC_TRNS,  TG(_FN), TG(_NUM), TG(_BTN),     KC_MUTE,   KC_MPLY,   KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,    ___,  TG(_NAV),
-                                    KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,   KC_TRNS,  KC_TRNS,   KC_TRNS,
+                    ___,      ___,      ___,      ___,      ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),  G(KC_LEFT),
+       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,   KC_RIGHT,     QK_AREP,  KC_TRNS,
+      TG(_NAV),     ___,      ___,  TG(_FN), TG(_NUM), TG(_BTN),     QK_BOOT,   EE_CLR,    KC_HOME,  KC_PGDN,  KC_PGUP,     KC_END, G(KC_RIGHT),  TG(_NAV),
+                                   TG(_NAV),      SPC,      TAB,     QK_AREP,  QK_REP,      KC_ESC, S(KC_LBRC), S(KC_RBRC),
                                    KC_WH_L,  KC_WH_R,                                         KC_TRNS,   KC_TRNS
 ),
 
 // NUMBER AND SYMBOL LAYER
 [_NUM] = LAYOUT(
    //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
+//               DM_REC1,  DM_PLY1,  DM_RSTP,  DM_PLY2,  DM_REC2,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
                    ___,      ___,      ___,      ___,      ___,                           KC_EQUAL,    KC_7,     KC_8,   KC_9,  KC_0,
       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_MINUS,    KC_4,     KC_5,   KC_6,  KC_LBRC,  KC_RBRC,
-     TG(_NUM),     ___,      ___,      ___,      ___, TG(_BTN),     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
-                                   KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
+     TG(_NUM),     ___,      ___,  TG(_FN), TG(_NAV), TG(_BTN),     KC_MUTE,   KC_MPLY,     KC_GRV,    KC_1,     KC_2,   KC_3,  KC_BSLS,  TG(_NUM),
+                                  TG(_NUM),      SPC,      TAB,     QK_AREP,  QK_REP,          BSP,      ENT,     DEL,
                                    KC_WH_U,  KC_WH_D,                                              KC_WH_L,  KC_WH_R
 
 ),
@@ -238,32 +361,32 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     TO_QWERTY,  
 // FUNCTION LAYER
 [_FN] = LAYOUT(
      //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                     ___,      ___,      ___,      ___,     ___,                             KC_F12,   KC_F7,   KC_F8,   KC_F9,  ___,
-        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT, KC_HYPR,                             KC_F11,   KC_F4,   KC_F5,   KC_F6,  ___,  KC_TRNS,
-        TG(_FN),     ___,      ___,      ___,      ___,     ___,     KC_MUTE,   KC_MPLY,     KC_F10,   KC_F1,   KC_F2,   KC_F3,  ___,  TG(_FN),
-                                     KC_BTN1,  KC_BTN2, KC_BTN3,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
+              CMD_SHIFT_3, KC_MPRV,  KC_MPLY,  KC_MNXT, KC_CAPS,                             KC_F12,   KC_F7,   KC_F8,   KC_F9,  KC_F15,
+ KC_TRNS,         KC_LCTL, KC_LALT,  KC_LGUI,  KC_LSFT, QK_CAPS_WORD_TOGGLE,                 KC_F11,   KC_F4,   KC_F5,   KC_F6,  KC_F14,  KC_TRNS,
+ TG(_FN),         OS_SWAP, KC_LPAD,  KC_BRID,  KC_BRIU, KC_MCTL,      EE_CLR,   QK_BOOT,     KC_F10,   KC_F1,   KC_F2,   KC_F3,  KC_F13,  TG(_FN),
+                                     TG(_FN),      SPC,     TAB,     QK_AREP,    QK_REP,      BSP,      ENT,       DEL,
                                      KC_BRID,  KC_BRIU,                                              KC_VOLD,  KC_VOLU
 
 ),
 
 // BUTTON LAYER
 [_BTN] = LAYOUT(
-                      CMD_SHIFT_3, KC_MNXT,  KC_MPLY,  KC_MPRV,  OS_SWAP,                               ___,       KC_ACL0,       KC_ACL1,     KC_ACL2,  KC_MS_BTN4,
-        RGB_TOG,          RGB_SAI, RGB_VAI,  RGB_VAD,  KC_MCTL,  KC_CAPS,                        KC_MS_LEFT,    KC_MS_DOWN,    KC_MS_UP,    KC_MS_RIGHT, KC_MS_BTN5, TG(_BTN),
-       TG(_BTN), RGB_MODE_FORWARD, KC_LPAD,  KC_BRIU,  KC_BRID, TG(_BTN), KC_MUTE,   KC_MPLY, KC_MS_WH_LEFT, KC_MS_WH_DOWN, KC_MS_WH_UP, KC_MS_WH_RIGHT, KC_MS_BTN6, TG(_BTN),
-                                             KC_BTN1,  KC_BTN2,  KC_BTN3,  QK_REP,   QK_AREP,       KC_TRNS,       KC_TRNS,        KC_TRNS,
-                                             KC_VOLD,  KC_VOLU,                                                   KC_BRID,        KC_BRIU
+                 KC_MS_LEFT, KC_ACL0, KC_ACL1,  KC_ACL2, KC_MS_RIGHT,                            ___,          ___,          ___,            ___,  KC_MS_BTN4,
+         KC_ESC,    KC_LCTL, KC_LALT, KC_LGUI,  KC_LSFT, KC_HYPR,                         KC_MS_LEFT,   KC_MS_DOWN,      KC_MS_UP,    KC_MS_RIGHT,   TG(_BTN), TG(_BTN),
+       TG(_BTN),        ___, KC_ACL0, KC_ACL1,  KC_ACL2, TG(_BTN), KC_MUTE,   KC_MPLY, KC_MS_WH_LEFT,  KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_WH_RIGHT, KC_MS_BTN5, TG(_BTN),
+                                      KC_BTN1,  KC_BTN2,  KC_BTN3, QK_AREP,   QK_REP,       KC_TRNS,       KC_TRNS,       KC_TRNS,
+                                      KC_VOLD,  KC_VOLU,                                                   KC_BRID,       KC_BRIU
 
 ),
 
 // SYMBOL LAYER
 [_SYM] = LAYOUT(
         //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
-                     ___,      ___,      ___,      ___,      ___,                           S(KC_EQUAL),    S(KC_7),     S(KC_8),   S(KC_9),  S(KC_0),
-        KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           S(KC_MINUS),    S(KC_4),     S(KC_5),   S(KC_6),  S(KC_LBRC),  S(KC_RBRC),
-       TG(_SYM),     ___,      ___,  TG(_FN), TG(_NAV), TG(_BTN),     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    TG(_SYM),
-                                     KC_TRNS,  KC_TRNS,  KC_TRNS,      QK_REP,   QK_AREP,    KC_TRNS, KC_TRNS,  KC_TRNS,
-                                     KC_WH_U,  KC_WH_D,                                           KC_WH_L,  KC_WH_R
+                     ___,      ___,   KC_DEL,  KC_BSPC, QK_CAPS_WORD_TOGGLE,                S(KC_EQUAL),    S(KC_7),     S(KC_8),   S(KC_9),  S(KC_0),
+       TG(_SYM), KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           S(KC_MINUS),    S(KC_4),     S(KC_5),   S(KC_6),  S(KC_LBRC),  S(KC_RBRC),
+       TG(_SYM),     ___,      ___,  TG(_FN), TG(_NAV), TG(_BTN),     KC_MUTE,   KC_MPLY,     S(KC_GRV),    S(KC_1),     S(KC_2),   S(KC_3),  S(KC_BSLS),    UPDIR,
+                                    TG(_SYM),      SPC,     TAB,     QK_AREP,  QK_REP,         COLON_EQ,    KC_SCLN,  S(KC_SCLN),
+                                     KC_WH_U,  KC_WH_D,                                                     KC_WH_L,     KC_WH_R
 ),
 
 };
@@ -409,16 +532,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //    if (!process_achordion(keycode, record)) { return false; }
 
     switch (keycode) {
-        case TO_QWERTY:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_QWERTY);
-                return false;
-            }
-        case TO_COLEMAK:
-            if (record->event.pressed) {
-                set_single_persistent_default_layer(_COLEMAK);
-                return false;
-            }
+//        case TO_QWERTY:
+//            if (record->event.pressed) {
+//                set_single_persistent_default_layer(_QWERTY);
+//                return false;
+//            }
+//        case TO_COLEMAK:
+//            if (record->event.pressed) {
+//                set_single_persistent_default_layer(_COLEMAK);
+//                return false;
+//            }
+
+
         case OS_SWAP:
             if (record->event.pressed) {
                 if (!keymap_config.swap_lctl_lgui) {
@@ -445,6 +570,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 // Send CMD+SHIFT+3 keypress
                 SEND_STRING(SS_LGUI(SS_LSFT("3")));
+            }
+            break;
+
+        case UPDIR:
+            if (record->event.pressed) {
+                SEND_STRING("../");
+            }
+            break;
+
+        case COLON_EQ:
+            if (record->event.pressed) {
+                SEND_STRING(" := ");
             }
             break;
 
@@ -490,42 +627,42 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return true;             // Return true for normal processing of tap keycode
 
-        case KC_ESCH:
-            if (!record->tap.count && record->event.pressed) {
-                tap_code16(KC_CAPS); // Intercept hold function to SEND CAPS LOCK
-                return false;
-            }
-            return true;             // Return true for normal processing of tap keycode
+//        case KC_ESCH:
+//            if (!record->tap.count && record->event.pressed) {
+//                tap_code16(KC_CAPS); // Intercept hold function to SEND CAPS LOCK
+//                return false;
+//            }
+//            return true;             // Return true for normal processing of tap keycode
 
-        case KC_OH:
-            if (!record->tap.count && record->event.pressed) {
-                tap_code16(S(KC_9)); // Intercept hold function to (
-                return false;
-            }
-            return true;             // Return true for normal processing of tap keycode
+//        case KC_OH:
+//            if (!record->tap.count && record->event.pressed) {
+//                tap_code16(S(KC_9)); // Intercept hold function to (
+//                return false;
+//            }
+//            return true;             // Return true for normal processing of tap keycode
 
-        case KC_PH:
-            if (!record->tap.count && record->event.pressed) {
-                tap_code16(S(KC_0)); // Intercept hold function to SEND )
-                return false;
-            }
-            return true;             // Return true for normal processing of tap keycode
-
-        case KC_LLBH: // go to symbol layer on tap and to number layer on hold
-            if (record->tap.count && record->event.pressed) {
-                layer_move(_SYM);
-            } else if (record->event.pressed) {
-                layer_move(_NUM);
-            }
-            return false;
-
-        case KC_RLBH: // go to nav layer on tap and to fn layer on hold
-            if (record->tap.count && record->event.pressed) {
-                layer_move(_NAV);
-            } else if (record->event.pressed) {
-                layer_move(_FN);
-            }
-            return false;
+//        case KC_PH:
+//            if (!record->tap.count && record->event.pressed) {
+//                tap_code16(S(KC_0)); // Intercept hold function to SEND )
+//                return false;
+//            }
+//            return true;             // Return true for normal processing of tap keycode
+//
+//        case KC_LLBH: // go to symbol layer on tap and to number layer on hold
+//            if (record->tap.count && record->event.pressed) {
+//                layer_move(_SYM);
+//            } else if (record->event.pressed) {
+//                layer_move(_NUM);
+//            }
+//            return false;
+//
+//        case KC_RLBH: // go to nav layer on tap and to fn layer on hold
+//            if (record->tap.count && record->event.pressed) {
+//                layer_move(_NAV);
+//            } else if (record->event.pressed) {
+//                layer_move(_FN);
+//            }
+//            return false;
     }
     return true;
 }
@@ -536,9 +673,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef AUDIO_ENABLE
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
-    case _QWERTY:
-        PLAY_SONG(QWERTY_SONG);
-        break;
+//    case _QWERTY:
+//        PLAY_SONG(QWERTY_SONG);
+//        break;
     case _COLEMAK:
         PLAY_SONG(COLEMAK_SONG);
         break;
@@ -578,7 +715,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         } else {
             is_ctl_tab_active = true;
             register_code(KC_LCTL);
-            if (clockwise) {
+            if (!clockwise) {
                 tap_code(KC_TAB);
             } else {
                 register_code(KC_LSFT);
@@ -626,8 +763,8 @@ void render_os_lock_status(void) {
     static const char PROGMEM sep_v[] = {0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0xC0, 0};
     static const char PROGMEM sep_h1[] = {0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0};
     static const char PROGMEM sep_h2[] = {0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0xE1, 0};
-    static const char PROGMEM face_1[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0xE1, 0};  
-    static const char PROGMEM face_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xE1, 0}; 
+    static const char PROGMEM face_1[] = {0x80, 0x81, 0x82, 0x83, 0x84, 0xE1, 0};
+    static const char PROGMEM face_2[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xE1, 0};
     static const char PROGMEM os_m_1[] = {0x95, 0x96, 0};
     static const char PROGMEM os_m_2[] = {0xB5, 0xB6, 0};
     static const char PROGMEM os_w_1[] = {0x97, 0x98, 0};
@@ -636,7 +773,7 @@ void render_os_lock_status(void) {
     static const char PROGMEM n_lock[] = {0x91, 0x92, 0};
     static const char PROGMEM c_lock[] = {0x93, 0x94, 0};
     static const char PROGMEM b_lock[] = {0xE1, 0xE1, 0};
-    #ifdef AUDIO_ENABLE  
+    #ifdef AUDIO_ENABLE
       static const char PROGMEM aud_en[] = {0xAF, 0xB0, 0};
       static const char PROGMEM aud_di[] = {0xCF, 0xD0, 0};
     #endif
@@ -667,7 +804,7 @@ void render_os_lock_status(void) {
     oled_write_P(face_2, false);
     oled_write_ln_P(sep_v, false);
 
-    
+
 // lock key layer status ─────────────────────────────────┐
 
     led_t led_usb_state = host_keyboard_led_state();
@@ -715,69 +852,27 @@ void render_os_lock_status(void) {
 }
 
 
-// layer status ──────────────────────────────────────────┐
-//void layer_lock_set_user(layer_state_t locked_layers) {
-//  // Do something like `set_led(is_layer_locked(NAV));`
-//    if (is_layer_locked(_QWERTY)) {
-////        tap_code16(KC_F13);
-//        strcpy ( layer_state_str, "0 - QWERTY");
-//    } else if (is_layer_locked(_COLEMAK)) {
-////        tap_code16(S(KC_F13));
-//        strcpy ( layer_state_str, "1 - COLEMAK");
-//    } else if (is_layer_locked(_NAV)) {
-////        tap_code16(G(KC_F13));
-//        strcpy ( layer_state_str, "2 - NAV");
-//    } else if (is_layer_locked(_NUM)) {
-////        tap_code16(KC_F16);
-//        strcpy ( layer_state_str, "3 - NUM");
-//    } else if (is_layer_locked(_FN)) {
-////        tap_code16(KC_F17);
-//        strcpy ( layer_state_str, "4 - FN");
-//    } else if (is_layer_locked(_BTN)) {
-////        tap_code16(KC_F18);
-//        strcpy ( layer_state_str, "5 - BTN");
-//    } else if (is_layer_locked(_SYM)) {
-////        tap_code16(KC_F19);
-//        strcpy ( layer_state_str, "6 - SYM");
-//    } else {
-////        tap_code16(KC_F13);
-//        strcpy ( layer_state_str, "...");
-//    }
-////     oled_write_ln(layer_state_str, false);
-//}
-
 layer_state_t layer_state_set_user(layer_state_t state) {
       switch (get_highest_layer(state)) {
-            case _QWERTY:
-//                tap_code16(KC_F13);
-                strcpy ( layer_state_str, "0._BASE");
-                break;
             case _COLEMAK:
-//                tap_code16(S(KC_F13));
                 strcpy ( layer_state_str, "1._COLEMAK");
                 break;
             case _NAV:
-//                tap_code16(G(KC_F13));
-                strcpy ( layer_state_str, "2._NAV");
+                strcpy ( layer_state_str, "3._NAV");
                 break;
             case _NUM:
-//                tap_code16(KC_F16);
-                strcpy ( layer_state_str, "3._NUM");
+                strcpy ( layer_state_str, "5._NUM");
                 break;
             case _FN:
-//                tap_code16(KC_F17);
                 strcpy ( layer_state_str, "4._FN");
                 break;
             case _BTN:
-//                tap_code16(KC_F18);
-                strcpy ( layer_state_str, "5._BTN");
+                strcpy ( layer_state_str, "6._BTN");
                 break;
             case _SYM:
-//                tap_code16(KC_F19);
-                strcpy ( layer_state_str, "6._SYM");
+                strcpy ( layer_state_str, "2._SYM");
                 break;
             default:
-//                tap_code16(KC_F13);
                 strcpy ( layer_state_str, "...");
       }
   return state;
@@ -798,11 +893,11 @@ bool oled_task_kb(void) {
     if (is_keyboard_master()) {  // ────────────────────────── PRIMARY SIDE
 
         // layer status ──────────────────────────────────────────────────┐
-        #ifdef DYNAMIC_MACRO_ENABLE
-            if(dmacro_num == 1){ oled_write_P(rec_ico, false); }
-            if(dmacro_num == 2){ oled_write_P(stop_ico, false); }
-            if(dmacro_num == 3){ oled_write_P(play_ico, false); }
-        #endif //DYNAMIC_MACRO_ENABLE
+//        #ifdef DYNAMIC_MACRO_ENABLE
+//            if(dmacro_num == 1){ oled_write_P(rec_ico, false); }
+//            if(dmacro_num == 2){ oled_write_P(stop_ico, false); }
+//            if(dmacro_num == 3){ oled_write_P(play_ico, false); }
+//        #endif //DYNAMIC_MACRO_ENABLE
 
 
         // layer status ──────────────────────────────────────────────────┐
