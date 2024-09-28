@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NO_ACTION_ONESHOT
 #define NO_MUSIC_MODE
 #define LAYER_STATE_8BIT
+#define COMBO_TERM 40
 
 // ┌─────────────────────────────────────────────────┐
 // │ k e y   m a t r i x                             │

@@ -155,7 +155,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-
 // COMBOS
 enum combos {
     CB_OSM,
@@ -172,6 +171,7 @@ enum combos {
     CB_COLON_EQ,
     CB_ESC,
     CB_BTN_LAYER,
+    CB_NAV_LAYER,
     CB_TMUX_CMD,
 };
 const uint16_t PROGMEM cb_osm[] = {SPC, ENT, COMBO_END};
@@ -187,13 +187,15 @@ const uint16_t PROGMEM cb_lbrc[] = {KC_H, KC_COMM, COMBO_END};
 const uint16_t PROGMEM cb_rbrc[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM cb_colon_eq[] = {KC_B, KC_J, COMBO_END};
 const uint16_t PROGMEM cb_esc[] = {KC_QH, KC_WH, COMBO_END};
-const uint16_t PROGMEM cb_btn_layer[] = {SFT_N, GUI_E, ALT_I, COMBO_END};
+const uint16_t PROGMEM cb_btn_layer[] = {HYP_M, ALT_I, COMBO_END};
+const uint16_t PROGMEM cb_nav_layer[] = {SFT_N, GUI_E, ALT_I, COMBO_END};
 const uint16_t PROGMEM cb_tmux_cmd[] = {KC_L, KC_U, KC_Y, COMBO_END};
 combo_t key_combos[] = {
         [CB_WP] = COMBO(cb_wp, G(KC_GRV)),
         [CB_ESC] = COMBO(cb_esc, KC_ESC),
         [CB_TMUX_CMD] = COMBO_ACTION(cb_tmux_cmd),
         [CB_BTN_LAYER] = COMBO(cb_btn_layer, TG(_BTN)),
+        [CB_NAV_LAYER] = COMBO(cb_nav_layer, TG(_NAV)),
         [CB_COLON_EQ] = COMBO_ACTION(cb_colon_eq),
         [CB_MSCD] = COMBO(cb_mscd, KC_MS_WH_DOWN),
         [CB_MSCU] = COMBO(cb_mscu, KC_MS_WH_UP),
@@ -339,8 +341,8 @@ OSM(MOD_LSFT),  KC_ZH,    KC_XH,    KC_CH,     KC_D,     KC_VH,     KC_MUTE,   K
 [_NAV] = LAYOUT(
 //╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷╷         ╷         ╷         ╷         ╷         ╷         ╷         ╷
                     ___,      ___,      ___,      ___,      ___,                        A(KC_LEFT),A(KC_DOWN),A(KC_UP),A(KC_RIGHT),  G(KC_LEFT),
-       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,   KC_RIGHT,     QK_AREP,  KC_TRNS,
-      TG(_NAV),     ___,      ___,  TG(_FN), TG(_NUM), TG(_BTN),     QK_BOOT,   EE_CLR,    KC_HOME,  KC_PGDN,  KC_PGUP,     KC_END, G(KC_RIGHT),  TG(_NAV),
+       KC_TRNS, KC_LCTL,  KC_LALT,  KC_LGUI,  KC_LSFT,  KC_HYPR,                           KC_LEFT,  KC_DOWN,    KC_UP,   KC_RIGHT,    TG(_NAV),  KC_TRNS,
+      TG(_NAV),     ___,      ___,  TG(_FN), TG(_NUM), TG(_BTN),     QK_BOOT,   EE_CLR,    KC_PGDN,  KC_HOME,   KC_END,   KC_PGUP,  G(KC_RIGHT),  TG(_NAV),
                                    TG(_NAV),      SPC,      TAB,     QK_AREP,  QK_REP,      KC_ESC, S(KC_LBRC), S(KC_RBRC),
                                    KC_WH_L,  KC_WH_R,                                         KC_TRNS,   KC_TRNS
 ),
